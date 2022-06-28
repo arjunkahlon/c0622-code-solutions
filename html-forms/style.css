@@ -1,0 +1,16 @@
+#email-label {
+  display: block;
+}
+
+#reason-label {
+  display: block;
+}
+
+.favorite-language {
+  margin-top: 15px;
+}
+
+#language-prompt {
+  display: block;
+  margin-bottom: 15px;
+}
