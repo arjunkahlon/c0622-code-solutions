@@ -1,0 +1,21 @@
+/**  Button CSS Selectors  ***/
+button.hover-button {
+  padding: 6px 16px;
+  font-size: 20px;
+}
+
+button.hover-button:hover {
+  background-color: black;
+  color: white;
+}
+
+/***  Table CSS Selector  *****/
+
+#student-table-header {
+  background-color: black;
+  color: white;
+}
+
+tbody tr:nth-child(odd) {
+  background-color: lightgrey;
+}
