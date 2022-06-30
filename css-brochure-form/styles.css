@@ -1,11 +1,11 @@
 #page-header {
   color: rgb(236 93 87);
-  font-family: sans-serif;
+  font-family: "Brandon Grotesque", sans-serif;
   width: 50%;
   margin: auto;
   text-align: center;
   margin-top: 20px;
-  font-size: 9px;
+  font-size: 10px;
   font-weight: 500;
 }
 
@@ -26,7 +26,7 @@
   margin-bottom: 2px;
   padding-left: 7px;
   font-size: 6px;
-  font-family: sans-serif;
+  font-family: AtlasGrotesque, sans-serif;
 }
 
 #email-input,
@@ -38,6 +38,7 @@
   padding-left: 6px;
   padding-top: 6px;
   padding-bottom: 6px;
+  border-style: solid;
   border-radius: 3px;
   border-width: 0.5px;
   border-color: rgb(218 220 220);
@@ -64,6 +65,7 @@
   color: white;
   float: right;
   margin-top: 5px;
+  border-style: solid;
   border-radius: 12px;
   border: none;
   padding: 5px 11px;
