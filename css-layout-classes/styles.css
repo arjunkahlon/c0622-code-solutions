@@ -1,0 +1,25 @@
+.container {
+  margin-left: 200px;
+  margin-right: 200px;
+}
+
+.content-row {
+  display: flex;
+  min-width: 0;
+}
+
+.col-one-third {
+  flex-basis: calc(100%/3);
+}
+
+.col-one-fourth {
+  flex-basis: calc(100%/4);
+}
+
+.col-two-thirds {
+  flex-basis: calc((100% * 2)/3);
+}
+
+image {
+  width: 100%;
+}
