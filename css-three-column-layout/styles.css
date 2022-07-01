@@ -1,0 +1,81 @@
+/**  Containing Block Selectors  **/
+
+.container {
+  margin: auto;
+}
+
+.row {
+  display: flex;
+}
+
+.column-third {
+  flex-basis: calc(100%/3);
+}
+
+.image-wrapper {
+  margin: auto;
+  background-color: white;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 20px;
+}
+
+#feature-section {
+  padding: 15px 50px 20px;
+}
+
+/***  Style Classes  *****/
+
+.fill-background {
+  background-color: rgb(26 150 218);
+}
+
+.pad-container {
+  padding-top: 30px;
+  padding-bottom: 10px;
+}
+
+.pad-features {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.text-white {
+  color: white;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.center {
+  align-content: center;
+  justify-content: center;
+}
+
+.lato-font {
+  font-family: Lato, sans-serif;
+}
+
+/** Element selectors **/
+
+img {
+  width: 55%;
+  height: 65%;
+}
+
+h2 {
+  font-size: 23px;
+}
+
+h3 {
+  font-size: 15px;
+  margin-bottom: 0;
+}
+
+p {
+  font-size: 11px;
+}
