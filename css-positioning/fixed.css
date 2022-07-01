@@ -5,6 +5,7 @@ html {
 .page-title {
   font-size: 3rem;
   text-align: center;
-
-  /* your code here */
+  position: fixed;
+  left: 2.5em;
+  top: 0.5em;
 }
