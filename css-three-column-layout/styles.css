@@ -1,68 +1,81 @@
+/**  Containing Block Selectors  **/
+
 .container {
   margin: auto;
 }
 
-.padding30 {
-  padding-top: 30px;
-  padding-left: 90px;
-  padding-right: 90px;
-}
-
-.set-background-blue {
-  background-color: rgb(26 150 218);
-}
-
-#page-header {
-  color: white;
-  font-family: Lato, sans-serif;
-  align-items: center;
-  justify-content: center;
-  margin-bottom: 0;
-  font-size: 22px;
-}
-
 .row {
   display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
-.column {
+.column-third {
   flex-basis: calc(100%/3);
 }
 
-.feature-section {
-  color: white;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 20px;
-}
-
-.circle-icon {
-  display: flex;
+.image-wrapper {
+  margin: auto;
+  background-color: white;
+  border-radius: 50%;
   width: 80px;
   height: 80px;
-  border-radius: 50%;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  background-color: white;
+  text-align: center;
+  padding-top: 20px;
+  margin-bottom: 20px;
 }
+
+#feature-section {
+  padding: 15px 50px 20px;
+}
+
+/***  Style Classes  *****/
+
+.fill-background {
+  background-color: rgb(26 150 218);
+}
+
+.pad-container {
+  padding-top: 30px;
+  padding-bottom: 10px;
+}
+
+.pad-features {
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.text-white {
+  color: white;
+}
+
+.text-center {
+  text-align: center;
+}
+
+.center {
+  align-content: center;
+  justify-content: center;
+}
+
+.lato-font {
+  font-family: Lato, sans-serif;
+}
+
+/** Element selectors **/
 
 img {
-  width: 75%;
+  width: 55%;
+  height: 65%;
 }
 
-.feature-header {
-  font-family: Lato, sans-serif;
+h2 {
+  font-size: 23px;
+}
+
+h3 {
+  font-size: 15px;
   margin-bottom: 0;
-  font-size: 16px;
 }
 
-.feature-description {
-  font-family: Lato, sans-serif;
-  font-size: 12px;
-  text-align: center;
+p {
+  font-size: 11px;
 }
