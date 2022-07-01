@@ -22,9 +22,10 @@ p {
   font-size: 12px;
 }
 
-.content-row {
+.row {
   display: flex;
   min-width: 0;
+  align-items: center;
 }
 
 .col-one-third {
