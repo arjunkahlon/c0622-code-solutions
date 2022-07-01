@@ -1,6 +1,5 @@
 .container {
   margin: auto;
-  min-width: 0;
 }
 
 h1 {
@@ -24,7 +23,10 @@ p {
 
 .row {
   display: flex;
-  min-width: 0;
+}
+
+.center-content {
+  justify-content: center;
   align-items: center;
 }
 
