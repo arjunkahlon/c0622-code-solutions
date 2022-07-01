@@ -1,0 +1,76 @@
+#page-header {
+  color: rgb(236 93 87);
+  font-family: "Brandon Grotesque", sans-serif;
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.hiring-questionnaire {
+  width: 50%;
+  margin: auto;
+  text-align: center;
+  padding-top: 10px;
+
+  /* background-color: yellow; */
+}
+
+#email-label,
+#name-label,
+#location-label,
+#engineer-label {
+  display: flex;
+  margin-bottom: 2px;
+  padding-left: 7px;
+  font-size: 6px;
+  font-family: AtlasGrotesque, sans-serif;
+}
+
+#email-input,
+#name-input,
+#location-input {
+  display: flex;
+  width: 100%;
+  margin-bottom: 10px;
+  padding-left: 6px;
+  padding-top: 6px;
+  padding-bottom: 6px;
+  border-style: solid;
+  border-radius: 3px;
+  border-width: 0.5px;
+  border-color: rgb(218 220 220);
+  font-size: 8px;
+  font-family: sans-serif;
+}
+
+::placeholder {
+  color: rgb(153 153 153);
+}
+
+#engineer-input {
+  background-color: rgb(243 237 237);
+  width: 100%;
+  border-radius: 2px;
+  font-size: 8px;
+  padding: 5px 0;
+  border-color: rgb(166 170 169);
+  border-width: 0.7px;
+}
+
+#submit-button {
+  background-color: rgb(236 93 87);
+  color: white;
+  margin-top: 5px;
+  border-style: solid;
+  border-radius: 12px;
+  border: none;
+  padding: 5px 11px;
+  font-size: 8px;
+}
+
+#button-div {
+  text-align: right;
+}
