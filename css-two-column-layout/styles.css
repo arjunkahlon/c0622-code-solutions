@@ -1,0 +1,71 @@
+/* defualt blocks */
+
+.container {
+  max-width: 80%;
+  margin: auto;
+}
+
+.row {
+  display: flex;
+}
+
+.col-half {
+  flex-basis: 50%;
+}
+
+/* Additional Container Blocks */
+.banner {
+  padding-top: 50px;
+}
+
+#feature-section {
+  width: 60%;
+  margin: 0 80px;
+}
+
+/* Utility Classes */
+
+.center {
+  align-items: center;
+  justify-content: center;
+}
+
+.flow-column {
+  flex-direction: column;
+}
+
+.center-text {
+  text-align: center;
+}
+
+/* Element selectors */
+.banner > h1 {
+  font-size: 50px;
+  margin-bottom: 0;
+}
+
+.banner > p {
+  width: 55%;
+}
+
+/* Font selectors */
+
+.karla-font {
+  font-family: Karla, sans-serif;
+}
+
+.small-text {
+  font-size: 14px;
+  color: rgb(130 130 130);
+  line-height: 2em;
+}
+
+.big-text {
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 1em;
+}
+
+.feature-header {
+  width: 40%;
+}
