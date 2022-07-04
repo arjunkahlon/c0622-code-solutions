@@ -10,9 +10,9 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <main>
-    <div class="row center flow-column banner">
-      <h1 class="center-text karla-font" id="header-title">SCALE, SPEED, AGILITY</h1>
+  <main class="container">
+    <div class="row center flow-column banner center-column">
+      <h1 class="karla-font" id="header-title">SCALE, SPEED, AGILITY</h1>
       <p id="header-summary" class="center-text small-text karla-font">
         We've dedicated thousands of man hours to making
         healthcare institutions in the Helium network run
@@ -23,18 +23,30 @@
 
     <section id="feature-section">
       <div class="row center">
-        <div class="col-half">
-          <h2 class="feature-header big-text">INTUITIVE, SMART SOFTWARE</h2>
-          <p class="small-text karla-font">
+        <div class="col-one-sixth">
+          <div class="image-wrapper remove-image-distance">
+            <img src="./images/software.svg" alt="Software">
+          </div>
+        </div>
+        <div class="col-one-third">
+          <h2 class="feature-header big-text karla-font">INTUITIVE,<br> SMART SOFTWARE</h2>
+          <p class="small-text karla-font set-paragraph-width">
             We build products that transform how healthcare
             facilities run across Africa - making them radically
             more efficient operationally and finacnially, a complete
             turnaround.
           </p>
         </div>
-        <div class="col-half">
-          <h2 class="feature-header big-text karla-font">PRACTICE MEDICINE, NOT ADMINISTRATION</h2>
-          <p class="small-text karla-font">
+        <div class="col-one-sixth">
+          <div class="image-wrapper remove-image-distance">
+            <img src="./images/practice.svg" alt="Practice">
+          </div>
+        </div>
+        <div class="col-one-third increase-padding-right">
+          <h2 class="feature-header big-text karla-font">PRACTICE MEDICINE,
+              NOT ADMINISTRATION
+          </h2>
+          <p class="small-text karla-font set-paragraph-width">
             Our all-in-one electronic health records (EHR), hospital
             management system (HMIS) &amp; billing system helps streamline
             your facility, reduce waste and improve quality of care.
@@ -43,17 +55,27 @@
         </div>
       </div>
       <div class="row center">
-        <div class="col-half">
+        <div class="col-one-sixth">
+          <div class="image-wrapper remove-image-distance">
+            <img src="./images/circumstance.svg" alt="Circumstance">
+          </div>
+        </div>
+        <div class="col-one-third increase-padding-right">
           <h2 class="feature-header big-text karla-font">FOR ANY CIRCUMSTANCE</h2>
-          <p class="small-text karla-font">
+          <p class="small-text karla-font set-paragraph-width">
             Our intuitive system is built around the pecularities of
             your facility; we support offline deployments, sync to the
             cloud and run on any device 24/7.
           </p>
         </div>
-        <div class="col-half">
+        <div class="col-one-sixth">
+          <div class="image-wrapper remove-image-distance">
+            <img src="./images/data.svg" alt="Data">
+          </div>
+        </div>
+        <div class="col-one-third">
           <h2 class="feature-header big-text karla-font">DATA THAT TRANSFORMS</h2>
-          <p class="small-text karla-font">
+          <p class="small-text karla-font set-paragraph-width">
             We understand your facility better than you do; we provide
             visually-appealing real-time analytics, reports, and trends
             at your finger tips.
@@ -61,6 +83,13 @@
         </div>
       </div>
     </section>
+    <div class="button">
+      <div class="row center">
+        <div class="col-one-fourth center-button">
+          <button id="learn-more-button" class="karla-font">Learn More</button>
+        </div>
+      </div>
+    </div>
   </main>
 </body>
 </html>
