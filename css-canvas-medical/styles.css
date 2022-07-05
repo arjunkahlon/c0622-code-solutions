@@ -81,14 +81,12 @@ html {
   width: 80%;
   padding-top: 1em;
   padding-left: 1.5em;
-  font-size: 2.5vw;
 }
 
 #hero-text {
   width: 80%;
   padding-top: 0.5em;
   padding-left: 2.6em;
-  font-size: 1.4vw;
   line-height: 1.5em;
   margin-bottom: 2.5em;
 }
@@ -109,7 +107,6 @@ html {
 
 #clinician-header {
   width: 100%;
-  font-size: 2.3vw;
   margin-bottom: 0.4em;
 }
 
@@ -118,12 +115,7 @@ html {
   margin-left: auto;
   margin-right: auto;
   margin-bottom: 0;
-  font-size: 1.1vw;
   line-height: 2em;
-}
-
-.practice-list {
-  font-size: 1.4vw;
 }
 
 .learn-more-section {
@@ -137,10 +129,6 @@ html {
   background-color: rgb(82 83 81);
   margin-top: 1em;
   padding-bottom: 4em;
-}
-
-#canvas-btm {
-  font-size: 3vw;
 }
 
 .address-block {
@@ -177,10 +165,6 @@ html {
 
 .bottom-block {
   padding-left: 3em;
-}
-
-.bottom-block a {
-  font-size: 1.3vw;
 }
 
 .pad-bottom-links {
@@ -265,6 +249,8 @@ html {
   padding: 0.6em 2em;
   text-decoration: none;
   font-size: 14px;
+  border-style: none;
+  border-width: 0;
 }
 
 /* Text Formatters */
@@ -297,36 +283,77 @@ html {
 }
 
 .address-text {
-  font-size: 1.2vw;
   line-height: 0.5;
   margin-top: 2.5em;
 }
 
 .company-link {
   display: block;
-  font-size: 1.3vw;
 }
 
 #learn-more-header {
-  font-size: 2vw;
   margin-bottom: 0.5em;
 }
 
 #learn-more-paragraph {
-  font-size: 1.2vw;
   margin-top: 0.1em;
 }
 
-/* Font Formatters */
-.avenir-font {
+.avenir-font-8 {
   font-family: Avenir, sans-serif;
 }
 
-.tiempos-font {
+.tiempos-font-8 {
   font-family: "Tiempos Headline", serif;
 }
 
-.tiempos-font-light {
+.tiempos-font-light-8 {
+  font-family: "Tiempos Headline", serif;
+
+  /* font-style: italic; */
+  font-weight: lighter;
+}
+
+.avenir-font-10 {
+  font-family: Avenir, sans-serif;
+}
+
+.tiempos-font-10 {
+  font-family: "Tiempos Headline", serif;
+}
+
+.tiempos-font-light-10 {
+  font-family: "Tiempos Headline", serif;
+
+  /* font-style: italic; */
+  font-weight: lighter;
+}
+
+/* Font Formatters */
+.avenir-font-12 {
+  font-family: Avenir, sans-serif;
+}
+
+.tiempos-font-12 {
+  font-family: "Tiempos Headline", serif;
+}
+
+.tiempos-font-light-12 {
+  font-family: "Tiempos Headline", serif;
+
+  /* font-style: italic; */
+  font-weight: lighter;
+}
+
+.avenir-font-18 {
+  font-family: Avenir, sans-serif;
+}
+
+.tiempos-font-18 {
+  font-family: "Tiempos Headline", serif;
+}
+
+.tiempos-font-light-18 {
   font-family: "Tiempos Headline", serif;
 
   /* font-style: italic; */
