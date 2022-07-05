@@ -1,13 +1,8 @@
-var fullName;
-var isCool;
-var totalPets;
-var unknown;
+var fullName = 'Arjun Kahlon';
+var isCool = false;
+var totalPets = 1;
+var unknown = null;
 var never;
-
-fullName = 'Arjun Kahlon';
-isCool = false;
-totalPets = 1;
-unknown = null;
 
 console.log(`value of fullName: ${fullName}`);
 console.log(`value of isCool: ${isCool}`);
