@@ -1,0 +1,105 @@
+.container {
+  max-width: 80%;
+  margin: auto;
+}
+
+.row {
+  display: flex;
+}
+
+.col-full {
+  flex-basis: 100%;
+}
+
+.col-fourth {
+  flex-basis: 25%;
+}
+
+.center {
+  align-items: center;
+  justify-content: center;
+}
+
+.center-text {
+  text-align: center;
+}
+
+.flow-column {
+  flex-direction: column;
+}
+
+.inner-contain {
+  max-width: 90%;
+  padding-left: 6em;
+  padding-right: 6em;
+  margin: auto;
+}
+
+.img-scale {
+  height: 20px;
+  width: 20px;
+}
+
+.wrap-image img {
+  width: 80%;
+  height: 80%;
+}
+
+.center-image {
+  text-align: center;
+}
+
+.wrap-icon img {
+  width: 20%;
+  height: 20%;
+}
+
+.set-background {
+  background-color: rgb(247 248 250);
+}
+
+.add-bottom-padding {
+  padding-bottom: 1em;
+}
+
+.increase-line-height {
+  line-height: 1em;
+}
+
+.decrease-top-margin {
+  margin-top: 0.3em;
+}
+
+/* Font Selectors */
+
+.font-barlow {
+  font-family: Barlow, sans-serif;
+}
+
+.font-weighted {
+  font-weight: 700;
+}
+
+.font-8 {
+  font-size: 8px;
+}
+
+.font-10 {
+  font-size: 10px;
+}
+
+.font-12 {
+  font-size: 12px;
+}
+
+.font-14 {
+  font-size: 15px;
+}
+
+.font-20 {
+  font-size: 20px;
+}
+
+.text-grey {
+  color: rgb(94 95 95);
+}
