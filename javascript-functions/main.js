@@ -34,4 +34,4 @@ var firstNameResult = getFirstName({ firstName: 'Randy', lastName: 'Marsh' });
 console.log('firstNameResult:', firstNameResult);
 
 var lastElementResult = getLastElement(['i', 'sell', 'propane', 'and', 'propane', 'accessories']);
-console.log('lastElement Result:', lastElementResult);
+console.log('lastElementResult:', lastElementResult);
