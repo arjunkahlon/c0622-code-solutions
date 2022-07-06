@@ -5,7 +5,7 @@ function convertMinutesToSeconds(minutes) {
 }
 
 function greet(name) {
-  console.log('Hey,', name);
+  return 'Hey,' + ' ' + name;
 }
 
 function getArea(width, height) {
@@ -25,7 +25,8 @@ function getLastElement(array) {
 var convertMinutesResult = convertMinutesToSeconds(5);
 console.log('convertMinutesResult:', convertMinutesResult);
 
-greet('Beavis');
+var greetResult = greet('Beavis');
+console.log(greetResult);
 
 var areaResult = getArea(17, 42);
 console.log('areaResult: ', areaResult);
