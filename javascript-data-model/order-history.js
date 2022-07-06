@@ -12,7 +12,8 @@ var orderHistory = [
       {
         itemPrice: 31.55,
         itemURL: '/JavaScript-for-impatient-programmers/Bdfdkq',
-        book: {
+        item: {
+          type: 'book',
           title: 'JavaScript for impatient programmers',
           author: 'Axel Rauschmayer',
           prefix: 'Dr.',
@@ -35,7 +36,8 @@ var orderHistory = [
       {
         itemPrice: 41.33,
         itemURL: '/The-Timeless-Way-of-Building/Ttsdqqw',
-        book: {
+        item: {
+          type: 'book',
           title: 'The Timeless Way of Building',
           author: 'Christopher Alexander',
           imageURL: './images/242394023489'
@@ -57,7 +59,8 @@ var orderHistory = [
       {
         itemPrice: 15.98,
         itemURL: '/GameCube-Controller-Adapter-Cloud-Store/Gcw2ss',
-        gamePeripheral: {
+        item: {
+          type: 'gaming-peripheral',
           name: 'GameCube Controller Adapter. Super Smash Bros Switch GameCube Adapter for Wii U, PC. Support Turbo and Vibration Features. No Driver and No-Lag Gamecube Adapter',
           imageURL: './images/3458353899898'
         }
@@ -78,7 +81,8 @@ var orderHistory = [
       {
         itemPrice: 94.95,
         itemURL: '/GameCube-Controller-Smash/TLLDFD',
-        gamePeripheral: {
+        item: {
+          type: 'gaming-peripheral',
           name: 'GameCube Controller - Super Smash Bros. Edition (Nintendo Switch)',
           imageURL: './images/90880942323432'
         }
@@ -86,7 +90,8 @@ var orderHistory = [
       {
         itemPrice: 33.99,
         itemURL: '/The-Art-of-SQL/TASDfdqa',
-        book: {
+        item: {
+          type: 'book',
           title: 'The Art of SQL',
           author: 'Stephane Faroult',
           imageURL: './images/27347237894355'
