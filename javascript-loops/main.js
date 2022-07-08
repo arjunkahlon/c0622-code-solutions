@@ -41,7 +41,7 @@ function repeatWord(word, times) {
 }
 
 function logEachCharacter(string) {
-  for (let i = 0; i < string.length; i++) {
+  for (var i = 0; i < string.length; i++) {
     console.log('Value of string at the index ', i, string[i]);
   }
 }
@@ -49,7 +49,7 @@ function logEachCharacter(string) {
 function doubleAll(numbers) {
   var doubled = [];
 
-  for (let i = 0; i < numbers.length; i++) {
+  for (var i = 0; i < numbers.length; i++) {
     var doubleNum = numbers[i] * 2;
     doubled.push(doubleNum);
   }
@@ -59,7 +59,7 @@ function doubleAll(numbers) {
 function getKeys(object) {
   var keys = [];
 
-  for (const property in object) {
+  for (var property in object) {
     keys.push(property);
   }
   return keys;
@@ -68,7 +68,7 @@ function getKeys(object) {
 function getValues(object) {
   var values = [];
 
-  for (const property in object) {
+  for (var property in object) {
     values.push(object[property]);
   }
   return values;
