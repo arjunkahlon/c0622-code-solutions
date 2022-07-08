@@ -1,0 +1,46 @@
+/* Row/Column */
+
+.row {
+  display: flex;
+}
+
+.col-full {
+  flex-basis: 100%;
+}
+
+.col-fifth {
+  flex-basis: 20%;
+}
+
+/* Container Blocks */
+
+.container {
+  max-width: 75%;
+  margin: auto;
+}
+
+/* Flex Utility */
+.center {
+  align-items: center;
+  justify-content: center;
+}
+
+/* Image Selectors */
+.fit-image img {
+  max-width: 100%;
+  max-height: 100%;
+}
+
+/* Text Format Selectors */
+.center-text {
+  text-align: center;
+}
+
+.text-grey {
+  color: rgb(216 216 216);
+}
+
+/* Font Selectors */
+.font-dm {
+  font-family: "DM Sans", sans-serif;
+}
