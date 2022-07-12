@@ -7,7 +7,7 @@
   <title>JavaScript Model</title>
   <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="body">
   <main class="container">
     <div class="row">
       <div class="col-full">
@@ -16,13 +16,14 @@
     </div>
     <div class="row center">
       <div class="col-full">
-        <div id="survey-prompt" class="hidden">
-          <p>Would you like to take a survey</p>
-          <button class="button-close">NO</button>
+        <div class="overlay hidden">
+          <div id="survey-prompt" class="hidden">
+            <p class="font-large font-plain">Would you like to take a survey?</p>
+            <button class="button-close">NO</button>
+          </div>
         </div>
       </div>
     </div>
-  </main>
-
+  </main><script src="main.js"></script>
 </body>
 </html>
