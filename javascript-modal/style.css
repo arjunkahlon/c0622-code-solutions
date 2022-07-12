@@ -1,0 +1,32 @@
+.row {
+  display: flex;
+}
+
+.col-full {
+  flex-basis: 100%;
+}
+
+.center {
+  align-items: center;
+  justify-content: center;
+}
+
+.hidden {
+  /* display: none; */
+}
+
+.button-open {
+  color: white;
+  background-color: blue;
+  padding: 1em 4em;
+}
+
+.button-close {
+  color: white;
+  background-color: rgb(235 93 93);
+  padding: 1em 2em;
+}
+
+#survey-prompt {
+  margin: auto;
+}
