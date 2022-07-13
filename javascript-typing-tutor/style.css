@@ -1,0 +1,35 @@
+.row {
+  display: flex;
+}
+
+.col-full {
+  flex-basis: 100%;
+}
+
+.sentence {
+  width: 50%;
+  margin: 12em auto;
+}
+
+.center {
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: 80%;
+  margin: auto;
+}
+
+.display-sentence {
+  display: inline;
+  font-size: 30px;
+}
+
+.space {
+  margin: 0 0.3em;
+}
+
+.green {
+  color: greenyellow;
+}
