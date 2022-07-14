@@ -31,5 +31,13 @@
 }
 
 .green {
-  color: greenyellow;
+  color: rgb(51 210 53);
+}
+
+.red {
+  color: red;
+}
+
+.underline {
+  text-decoration: underline;
 }
