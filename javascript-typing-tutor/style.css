@@ -7,7 +7,7 @@
 }
 
 .sentence {
-  width: 50%;
+  width: 42%;
   margin: 12em auto;
 }
 
@@ -27,7 +27,7 @@
 }
 
 .space {
-  margin: 0 0.3em;
+  margin: 0 0.2em;
 }
 
 .green {
@@ -39,5 +39,12 @@
 }
 
 .underline {
+  padding-top: 2px;
   text-decoration: underline;
+  text-decoration-thickness: 2px;
+  white-space: pre;
+}
+
+.center-text {
+  text-align: center;
 }
