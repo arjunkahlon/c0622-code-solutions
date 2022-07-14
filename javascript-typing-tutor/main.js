@@ -11,13 +11,28 @@ function handleType(event) {
     if (($panCollection.length - counter) > 1) {
       $panCollection[counter + 1].setAttribute('class', 'underline');
     } else {
-      var accuracyText = document.createElement('p');
-      var accuracy = (Math.floor(correct / totalKeys * 100));
-      accuracyText.textContent = 'Congrats. Accuracy: ' + accuracy + '%';
-      $complete.appendChild(accuracyText);
+      results();
     }
     counter++;
   }
+}
+
+function results() {
+  var accuracyText = document.createElement('p');
+  var accuracy = (Math.floor(correct / totalKeys * 100));
+  accuracyText.textContent = 'Congrats. Accuracy: ' + accuracy + '%';
+  $complete.appendChild(accuracyText);
+
+  var playButton = document.createElement('button');
+  playButton.textContent = 'Play Again';
+  playButton.className = 'play';
+  $complete.appendChild(playButton);
+  var $playB = document.querySelector('.play');
+  $playB.addEventListener('click', playAgain);
+}
+
+function playAgain() {
+  window.location.reload();
 }
 
 var $panCollection = document.querySelectorAll('span');
