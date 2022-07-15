@@ -18,21 +18,31 @@ function handleType(event) {
 }
 
 function results() {
-  var accuracyText = document.createElement('p');
+  showResults();
+  var $accuracyText = document.querySelector('.accuracy-text');
   var accuracy = (Math.floor(correct / totalKeys * 100));
-  accuracyText.textContent = 'Congrats. Accuracy: ' + accuracy + '%';
-  $complete.appendChild(accuracyText);
+  $accuracyText.textContent = 'Congrats. Accuracy: ' + accuracy + '%';
 
-  var playButton = document.createElement('button');
-  playButton.textContent = 'Play Again';
-  playButton.className = 'play';
-  $complete.appendChild(playButton);
   var $playB = document.querySelector('.play');
   $playB.addEventListener('click', playAgain);
 }
 
 function playAgain() {
-  window.location.reload();
+  hideResults();
+  for (let i = 0; i < $panCollection.length; i++) {
+    $panCollection[i].setAttribute('class', '');
+  }
+  counter = 0;
+  totalKeys = 0;
+  correct = 0;
+}
+
+function showResults() {
+  $complete.className = 'center-text';
+}
+
+function hideResults() {
+  $complete.className = 'center-text hidden';
 }
 
 var $panCollection = document.querySelectorAll('span');
