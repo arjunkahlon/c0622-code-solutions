@@ -1,0 +1,54 @@
+.row {
+  display: flex;
+}
+
+.col-full {
+  flex-basis: 100%;
+}
+
+.sentence {
+  width: 50%;
+  margin: 12em auto;
+}
+
+.center {
+  align-items: center;
+  justify-content: center;
+}
+
+.container {
+  max-width: 80%;
+  margin: auto;
+}
+
+.display-sentence {
+  display: inline;
+  font-size: 25px;
+}
+
+.space {
+  margin: 0 0.2em;
+}
+
+.green {
+  color: rgb(51 210 53);
+}
+
+.red {
+  color: red;
+}
+
+.underline {
+  padding-top: 2px;
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  white-space: pre;
+}
+
+.hidden {
+  display: none;
+}
+
+.center-text {
+  text-align: center;
+}
