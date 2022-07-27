@@ -1,4 +1,7 @@
 /* exported reverseWords */
+/* ----------------------------------------------------------------------- */
+// Pseudocode
+
 // We begin by reversing the parameter string into a new string
 // We then iterate through the reversed string, and concatenate each
 //  indexed character value into a substring until we reach either an
@@ -8,6 +11,8 @@
 // We also account for the last substring which will not
 //  have an empty space concatenated in front of it.
 // Finally, we return the final string.
+/* ----------------------------------------------------------------------- */
+
 function reverseWords(string) {
   var reverseStr = '';
   var finalStr = '';

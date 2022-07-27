@@ -1,26 +1,22 @@
 /* exported titleCase */
+/* ----------------------------------------------------------------------- */
+// Pseudocode
+
+// First, we will need initialize the parameter string for usage
+// We will  convert the title paramter into all lower case characters.
+// Next we will be convert the all lower case string into an array of words
+// The second subproblem will handle special case words that are specified
+//  in the instructions as either conjunctions, articles, and prepositions
+/* ----------------------------------------------------------------------- */
+
 function titleCase(title) {
-  var conjunctions = ['and', 'or', 'nor', 'but'];
-  var articles = ['a', 'an', 'the'];
-  var prepositions = ['as', 'at', 'by', 'for', 'in', 'of', 'on', 'per', 'to'];
-
-  var lowerTitle = title.toLowerCase();
-  var titleArr = stringToArr(lowerTitle);
-  var newArr = capitalizeTitle(titleArr, conjunctions, articles, prepositions);
-
-  var newStr = '';
-  for (let i = 0; i < newArr.length; i++) {
-    if (i < newArr.length - 1) {
-      newStr += newArr[i] + ' ';
-    } else {
-      newStr += newArr[i];
-    }
-  }
-  // console.log(newArr);
-  return newStr;
+  var titleArr = stringToArr(title.toLowerCase());
+  var capArr = capitalizeTitle(titleArr);
+  var capStr = arrToString(capArr);
+  return capStr;
 }
 
-function capitalizeTitle(titleArr, conjunctions, articles, prepositions) {
+function capitalizeTitle(titleArr) {
   var newArr = [];
   if (containsHyphen(titleArr[0])) {
     titleArr[0] = capitalizeHyphen(titleArr[0]);
@@ -30,8 +26,8 @@ function capitalizeTitle(titleArr, conjunctions, articles, prepositions) {
     titleArr[0] = removeColon(titleArr[0]);
     if (isJSOrAPI(titleArr[0])) {
       titleArr[0] = capitalizeJSOrAPI(titleArr[0]);
-      titleArr[0] = addColon(titleArr[0]);
       titleArr[1] = capitalizeFirstLetter(titleArr[1]);
+      titleArr[0] = addColon(titleArr[0]);
     }
   } else {
     if (isJSOrAPI(titleArr[0])) {
@@ -46,26 +42,39 @@ function capitalizeTitle(titleArr, conjunctions, articles, prepositions) {
     }
 
     if (containsColon(titleArr[i])) {
+      titleArr[i] = removeColon(titleArr[i]);
       if (isJSOrAPI(titleArr[i])) {
         titleArr[i] = removeColon(titleArr[i]);
         titleArr[i] = capitalizeJSOrAPI(titleArr[i]);
-        titleArr[i] = addColon(titleArr[i]);
         titleArr[i + 1] = capitalizeFirstLetter(titleArr[i + 1]);
       }
       titleArr[i + 1] = capitalizeFirstLetter(titleArr[i + 1]);
+      titleArr[i] = addColon(titleArr[i]);
     } else {
       if (isJSOrAPI(titleArr[i])) {
         titleArr[i] = capitalizeJSOrAPI(titleArr[i]);
       }
     }
 
-    if (!(isSpecialCase(titleArr[i], conjunctions, articles, prepositions))) {
+    if (!(isSpecialCase(titleArr[i]))) {
       newArr.push(capitalizeFirstLetter(titleArr[i]));
     } else {
       newArr.push(titleArr[i]);
     }
   }
   return newArr;
+}
+
+function arrToString(arr) {
+  var newStr = '';
+  for (let i = 0; i < arr.length; i++) {
+    if (i < arr.length - 1) {
+      newStr += arr[i] + ' ';
+    } else {
+      newStr += arr[i];
+    }
+  }
+  return newStr;
 }
 
 function stringToArr(string) {
@@ -81,7 +90,10 @@ function stringToArr(string) {
   return arr;
 }
 
-function isSpecialCase(string, conjunctions, articles, prepositions) {
+function isSpecialCase(string) {
+  var conjunctions = ['and', 'or', 'nor', 'but'];
+  var articles = ['a', 'an', 'the'];
+  var prepositions = ['as', 'at', 'by', 'for', 'in', 'of', 'on', 'per', 'to'];
 
   if (conjunctions.includes(string) || articles.includes(string) || prepositions.includes(string)) {
     return true;

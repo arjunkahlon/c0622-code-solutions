@@ -1,4 +1,7 @@
 /* exported isAnagram */
+/* ----------------------------------------------------------------------- */
+// Pseudocode
+
 // I will attempt this algorithm first without using string prototype functions.
 // We begin by combining both parameters into one combined string.
 // Next, we remove the empty characters from the combined string to
@@ -13,6 +16,7 @@
 // After the inner loop terminates, we return false if the counter variable is odd
 // If the nested for loop termiantes and the counter condtional expression does not
 //  return false, we return true from the function.
+/* ----------------------------------------------------------------------- */
 
 function isAnagram(firstString, secondString) {
   var combinedString = firstString + secondString;

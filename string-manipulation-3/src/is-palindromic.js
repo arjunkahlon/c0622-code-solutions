@@ -1,4 +1,7 @@
 /* exported isPalindromic */
+/* ----------------------------------------------------------------------- */
+// Pseudocode
+
 // First we will need to remove the empty characters as we are basing the
 //  palindrome condition based sole on the alphabetical characters.
 // Next we will reverse through the string of alphabetical characters, and
@@ -6,6 +9,7 @@
 // Finally, we will perform a stricly equal comparison betwen the alphabetical
 //  string and the reversed string. If they are strictly equal, then the
 //  palindrome condition is met.
+/* ----------------------------------------------------------------------- */
 
 function isPalindromic(string) {
   var newStr = '';
