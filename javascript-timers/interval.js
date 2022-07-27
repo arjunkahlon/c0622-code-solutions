@@ -7,6 +7,8 @@ function countDown() {
   $heading.textContent = counter.toString();
   if (counter === 0) {
     $heading.textContent = '~Earth Beeeelooowww Us~';
+    var $body = document.querySelector('body');
+    $body.setAttribute('style', 'background-color: LightBlue');
     clearInterval(intervalID);
   }
 }
