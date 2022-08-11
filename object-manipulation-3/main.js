@@ -46,7 +46,7 @@ function playGame(userArr) {
         currentRank = players[i].hand.rank;
       }
       if (currentRank > highestRank) {
-        console.log(players[i].name + 's card: ' + players[i].hand.rank);
+        console.log(players[i].name + 's card: ' + players[i].hand.rank + ' ' + players[i].hand.suit);
         console.log(players[i].name + 's card is ' + 'higher than highest card');
         console.log('Highest card is: ', highestRank);
         highestRank = currentRank;
@@ -55,7 +55,7 @@ function playGame(userArr) {
         leader = players[i];
         console.log(leader.name + ' is now the leader');
       } else if (currentRank === highestRank) {
-        console.log(players[i].name + 's card: ' + players[i].hand.rank);
+        console.log(players[i].name + 's card: ' + players[i].hand.rank + ' ' + players[i].hand.suit);
         console.log(players[i].name + 's card: ' + 'is equal to highest card');
         console.log('Current card is: ', currentRank);
         console.log('Highest card is: ', highestRank);
@@ -63,7 +63,7 @@ function playGame(userArr) {
         tiedPlayers.unshift(leader);
         console.log('Tied players are: ', tiedPlayers);
       } else {
-        console.log(players[i].name + 's card: ' + players[i].hand.rank);
+        console.log(players[i].name + 's card: ' + players[i].hand.rank + ' ' + players[i].hand.suit);
         console.log(players[i].name + 's card is less than highest card');
         console.log('The highest card is still: ', highestRank);
         console.log(leader.name + ' is still the leader');
@@ -76,7 +76,7 @@ function playGame(userArr) {
       console.log(tiedPlayers);
     } else {
       gameOver = true;
-      console.log(leader.name + ' has won the game with a ' + leader.hand.rank + ' card!');
+      console.log(leader.name + ' has won the game with a ' + leader.hand.rank + ' ' + leader.hand.suit);
     }
   }
 }
