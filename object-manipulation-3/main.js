@@ -46,19 +46,33 @@ function playGame(userArr) {
         currentRank = players[i].hand.rank;
       }
       if (currentRank > highestRank) {
+        console.log(players[i].name + 's card: ' + players[i].hand.rank);
+        console.log(players[i].name + 's card is ' + 'higher than highest card');
+        console.log('Highest card is: ', highestRank);
         highestRank = currentRank;
+        console.log('New highest card is: ', highestRank);
         tiedPlayers = [];
         leader = players[i];
+        console.log(leader.name + ' is now the leader');
       } else if (currentRank === highestRank) {
+        console.log(players[i].name + 's card: ' + players[i].hand.rank);
+        console.log(players[i].name + 's card: ' + 'is equal to highest card');
+        console.log('Current card is: ', currentRank);
+        console.log('Highest card is: ', highestRank);
         tiedPlayers.push(players[i]);
         tiedPlayers.unshift(leader);
+        console.log('Tied players are: ', tiedPlayers);
+      } else {
+        console.log(players[i].name + 's card: ' + players[i].hand.rank);
+        console.log(players[i].name + 's card is less than highest card');
+        console.log('The highest card is still: ', highestRank);
+        console.log(leader.name + ' is still the leader');
       }
     }
 
     if (tiedPlayers.length > 0) {
       console.log('Entering Playoff');
       players = tiedPlayers.slice();
-      shuffledDeck = shuffleDeck(cardDeck);
       console.log(tiedPlayers);
     } else {
       gameOver = true;
