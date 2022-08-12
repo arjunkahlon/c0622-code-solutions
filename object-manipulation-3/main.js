@@ -1,112 +1,106 @@
 console.log('Lodash is loaded:', typeof _ !== 'undefined');
-var users = [
-  {
-    name: 'Cody',
-    hand: null
-  },
-  {
-    name: 'Tim',
-    hand: null
-  },
-  {
-    name: 'Arjun',
-    hand: null
-  },
-  {
-    name: 'Daniel',
-    hand: null
+
+// Game Functionality
+playGame(createPlayers(['Cody', 'Tim', 'Daniel', 'Arjun']), 2);
+
+function playGame(players, numCards) {
+  if (players.length <= 1 || numCards.length === 0) {
+    return;
   }
-];
-
-var cardSuit = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
-var cardNumber = ['Ace', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King'];
-var cardDeck = [];
-generateDeck();
-var shuffledDeck = shuffleDeck(cardDeck);
-playGame(users);
-
-function playGame(userArr) {
-  var gameOver = false;
-  var players = userArr;
+  var deck = generateDeck();
+  var highestTotal = 0;
   var leader = null;
-  var highestRank = 0;
   var tiedPlayers = [];
 
-  while (!gameOver) {
-    highestRank = 0;
-    leader = null;
-    tiedPlayers = [];
-    dealHand(players);
+  // Game Algorithm. If tie is found, playGame function will be called
+  //   recursively with the tied players as the argument. Game will run until
+  //   a winner is decided.
 
-    for (let i = 0; i < players.length; i++) {
-      var currentRank = 0;
-      if (typeof players[i].hand.rank === 'string') {
-        currentRank = convertRankToNum(players[i].hand.rank);
-      } else {
-        currentRank = players[i].hand.rank;
-      }
-      if (currentRank > highestRank) {
-        console.log(players[i].name + 's card: ' + players[i].hand.rank + ' ' + players[i].hand.suit);
-        console.log(players[i].name + 's card is ' + 'higher than highest card');
-        console.log('Highest card was: ', highestRank);
-        highestRank = currentRank;
-        console.log('New highest card is: ', highestRank);
-        tiedPlayers = [];
-        leader = players[i];
-        console.log(leader.name + ' is now the leader');
-      } else if (currentRank === highestRank) {
-        console.log(players[i].name + 's card: ' + players[i].hand.rank + ' ' + players[i].hand.suit);
-        console.log(players[i].name + 's card: ' + 'is equal to highest card');
-        console.log('Highest card is still: ', highestRank);
-        tiedPlayers.push(players[i]);
-        tiedPlayers.unshift(leader);
-        console.log('Tied players are: ', tiedPlayers);
-      } else {
-        console.log(players[i].name + 's card: ' + players[i].hand.rank + ' ' + players[i].hand.suit);
-        console.log(players[i].name + 's card is less than highest card');
-        console.log('Highest card is still: ', highestRank);
-        console.log(leader.name + ' is still the leader');
-      }
-    }
-
-    if (tiedPlayers.length > 0) {
-      console.log('Entering Playoff');
-      players = tiedPlayers.slice();
-      console.log(tiedPlayers);
-    } else {
-      gameOver = true;
-      console.log(leader.name + ' has won the game with a ' + leader.hand.rank + ' ' + leader.hand.suit);
-    }
-  }
-}
-
-function dealHand(players) {
+  var shuffledDeck = shuffleDeck(deck);
+  dealHand(players, numCards, shuffledDeck);
+  console.log(players);
   for (let i = 0; i < players.length; i++) {
-    players[i].hand = shuffledDeck.shift();
+    var playerTotal = calculateTotal(players[i].hand);
+    if (playerTotal > highestTotal) {
+      leader = players[i];
+      highestTotal = playerTotal;
+    } else if (playerTotal === highestTotal) {
+      tiedPlayers = [];
+      tiedPlayers.push(leader);
+      tiedPlayers.push(players[i]);
+      leader = null;
+    }
   }
+  if (tiedPlayers.length === 0) {
+    console.log('The winner is ' + leader.name);
+    return true;
+  } else {
+    console.log('Entering Playoffs');
+    players = null;
+    var newPlayerNames = [];
+    for (let i = 0; i < tiedPlayers.length; i++) {
+      newPlayerNames.push(tiedPlayers[i].name);
+    }
+    var newPlayers = createPlayers(newPlayerNames);
+    playGame(newPlayers, numCards);
+  }
+}
+// Player Creation
+
+function createPlayers(names) {
+  var players = [];
+  for (let i = 0; i < names.length; i++) {
+    var newPlayer = {};
+    newPlayer.hand = [];
+    newPlayer.name = names[i];
+    players.push(newPlayer);
+  }
+  return players;
 }
 
-function convertRankToNum(str) {
-  if (str === 'Ace') {
-    return 11;
-  } else if (str === 'King' || str === 'Queen' || str === 'Jack') {
-    return 10;
-  }
-  return null;
-}
+// Deck Creation/Deal/Shuffle
 
 function generateDeck() {
+  var newCardDeck = [];
+  var cardSuit = ['Clubs', 'Diamonds', 'Hearts', 'Spades'];
+  var cardNumber = ['Ace', 2, 3, 4, 5, 6, 7, 8, 9, 10, 'Jack', 'Queen', 'King'];
+
   for (let i = 0; i < cardNumber.length; i++) {
     for (let j = 0; j < cardSuit.length; j++) {
       var newCard = {};
       newCard.rank = cardNumber[i];
       newCard.suit = cardSuit[j];
-      cardDeck.push(newCard);
+      newCardDeck.push(newCard);
     }
   }
+  return newCardDeck;
 }
 
 function shuffleDeck(deck) {
   var newDeck = _.shuffle(deck);
   return newDeck;
+}
+
+function dealHand(players, numCards, deck) {
+  for (let i = 0; i < players.length; i++) {
+    for (let j = 0; j < numCards; j++) {
+      players[i].hand.push(deck.shift());
+    }
+  }
+}
+
+// Game Calculation
+
+function calculateTotal(hand) {
+  var total = 0;
+  for (let i = 0; i < hand.length; i++) {
+    if (hand[i].rank === 'Ace') {
+      total += 11;
+    } else if (hand[i].rank === 'King' || hand[i].rank === 'Queen' || hand[i].rank === 'Jack') {
+      total += 10;
+    } else {
+      total += hand[i].rank;
+    }
+  }
+  return total;
 }
