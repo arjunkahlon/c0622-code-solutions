@@ -1,3 +1,5 @@
-exports.divide = function (x, y) {
+function divide(x, y) {
   return parseInt(x) / parseInt(y);
-};
+}
+
+module.exports = divide;
