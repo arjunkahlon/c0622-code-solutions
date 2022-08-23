@@ -35,13 +35,13 @@ app.post('/api/notes', (req, res) => {
     dataObj.notes[dataObj.nextId] = requestNote;
     dataObj.nextId++;
     const updatedData = JSON.stringify(dataObj, null, 2);
-    res.status(201).json(requestNote);
     fs.writeFile('data.json', updatedData, 'utf8', err => {
       if (err) {
         console.error(err);
-        res.status(500).json({ Error: 'An unexpected error occured' });
+        return res.status(500).json({ Error: 'An unexpected error occured' });
       }
     });
+    res.status(201).json(requestNote);
   }
 });
 
