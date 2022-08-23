@@ -13,7 +13,7 @@ app.get('/api/notes', (req, res) => {
 app.get('/api/notes/:id', (req, res) => {
   const noteID = parseInt(req.params.id);
   if (noteID < 0 || !Number.isInteger(noteID)) {
-    res.status(400).json({ Error: 'ID is not a valid positive integer' });
+    return res.status(400).json({ Error: 'ID is not a valid positive integer' });
   } else {
     const singleNote = viewNotes(noteID);
 
