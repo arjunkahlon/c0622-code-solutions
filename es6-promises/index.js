@@ -5,6 +5,6 @@ nameProm.then(
     console.log(value);
   },
   reason => {
-    console.error(reason);
+    console.log(reason.message);
   }
 );
