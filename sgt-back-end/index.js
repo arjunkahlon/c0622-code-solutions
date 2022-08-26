@@ -63,7 +63,7 @@ app.get('/api/grades', (req, res, next) => {
 });
 
 app.post('/api/grades', (req, res, next) => {
-  if (!req.body.name || !req.body.course || !req.body.score) {
+  if (!req.body.name || !req.body.course || req.body.score === undefined) {
     return res.status(400).json({ Error: 'Missing name, course, or score.' });
   } else if (!Number.isInteger(req.body.score) || req.body.score < 0 || req.body.score > 100) {
     return res.status(400).json({ Error: 'Score is invalid.' });
