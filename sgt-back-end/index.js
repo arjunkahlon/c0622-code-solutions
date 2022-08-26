@@ -131,7 +131,7 @@ app.delete('/api/grades/:gradeId', (req, res) => {
   db.query(sql, params).then(result => {
     const deletedGrade = result.rows[0];
     if (!deletedGrade) {
-      return res.status(400).json({ Error: 'Id does not exist in database' });
+      return res.status(404).json({ Error: 'Id does not exist in database' });
     } else {
       res.status(204).json();
     }
