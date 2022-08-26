@@ -17,24 +17,23 @@ const traits = [
   { trainer: 'ash' }
 ];
 
-const sum = numbers.reduce((previousValue, currentValue) => currentValue + previousValue, 0);
+const sum = numbers.reduce((prev, curr) => curr + prev, 0);
 console.log(`Sum of numbers array: ${sum}`);
 
-const product = numbers.reduce((previousValue, currentValue) => currentValue * previousValue);
+const product = numbers.reduce((prev, curr) => curr * prev);
 console.log(`Product of numbers array: ${product}`);
 
-const amount = (previousValue, currentValue) => {
-  let currentAmount = currentValue.amount;
-  if (currentValue.type === 'deposit') {
-    currentAmount = previousValue + currentAmount;
+const currentAmount = (prev, curr) => {
+  const currentAmount = curr.amount;
+  if (curr.type === 'deposit') {
+    return prev + currentAmount;
   } else {
-    currentAmount = previousValue - currentAmount;
+    return prev - currentAmount;
   }
-  return currentAmount;
 };
 
-const balance = account.reduce(amount, 0);
+const balance = account.reduce(currentAmount, 0);
 console.log(`Balance of account: ${balance}`);
 
-const composite = traits.reduce((previousValue, currentValue) => Object.assign(previousValue, currentValue));
+const composite = traits.reduce((prev, curr) => Object.assign(prev, curr));
 console.log('Composite: ', composite);
