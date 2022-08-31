@@ -1,0 +1,35 @@
+.hot-button {
+  width: 8rem;
+  height: 3rem;
+  box-shadow: 5px 5px 15px 5px #000;
+}
+
+.background-blue {
+  background-color: darkblue;
+  color: white;
+}
+
+.background-purple {
+  background-color: purple;
+  color: white;
+}
+
+.background-red {
+  background-color: red;
+  color: white;
+}
+
+.background-orange {
+  background-color: orange;
+  color: black;
+}
+
+.background-yellow {
+  background-color: yellow;
+  color: black;
+}
+
+.background-white {
+  background-color: white;
+  color: black;
+}
