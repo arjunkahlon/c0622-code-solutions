@@ -1,0 +1,33 @@
+.stop-watch-container {
+  width: 8rem;
+  height: 8rem;
+  border-radius: 50%;
+  border: 2px solid black;
+}
+
+.time-wrapper {
+  width: 2rem;
+  height: 1rem;
+  margin-top: 3rem;
+  margin-left: 3rem;
+  text-align: center;
+}
+
+.play-button-wrapper {
+  margin-top: 1.5rem;
+  width: 8rem;
+  height: 2rem;
+  text-align: center;
+}
+
+.play-button {
+  size: 2rem;
+}
+
+.play-button:hover {
+  transform: scale(2);
+}
+
+.stop-watch-container:hover {
+  transform: scale(1.1);
+}
