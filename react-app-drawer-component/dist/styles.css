@@ -1,0 +1,64 @@
+body {
+  background-image: url("../img/bobby.png");
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.drawer-toggle {
+  font-size: 2rem;
+}
+
+.hidden {
+  display: none;
+}
+
+.hover {
+  cursor: pointer;
+}
+
+.app-drawer-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background-color: rgb(0 0 0 / 73.7%);
+}
+
+.app-drawer {
+  width: 400px;
+  height: 100%;
+  background-color: white;
+  position: fixed;
+  margin: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  transition: transform 0.2s;
+  transition-duration: 0.5s;
+}
+
+.game-list-header-wrapper {
+  text-align: center;
+  margin-top: 4rem;
+}
+
+.game-list-header {
+  font-weight: bold;
+}
+
+.game-list {
+  list-style-type: none;
+  padding-left: 7rem;
+}
+
+.game-list-item {
+  margin: 2rem 0;
+  size: 5rem;
+  padding: 1rem;
+}
+
+.game-list-item:hover,
+.game-list-item > li:hover {
+  background-color: rgb(128 128 128 / 21.7%);
+}
