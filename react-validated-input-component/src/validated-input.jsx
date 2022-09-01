@@ -4,9 +4,7 @@ export default class ValidatedInput extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      input: '',
-      validInput: false,
-      validLength: false
+      input: ''
     };
     this.handleChange = this.handleChange.bind(this);
   }
