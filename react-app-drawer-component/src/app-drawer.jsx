@@ -1,4 +1,5 @@
 import React from 'react';
+import GameList from './game-list';
 
 export default class AppDrawer extends React.Component {
   constructor(props) {
@@ -6,6 +7,7 @@ export default class AppDrawer extends React.Component {
     this.state = {
       openDrawer: false
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
   handleClick() {
@@ -15,24 +17,35 @@ export default class AppDrawer extends React.Component {
   }
 
   render() {
+    const games = [
+      { number: '001', name: 'Wand of Gamelon' },
+      { number: '002', name: 'Skyward Sword' },
+      { number: '003', name: 'Spirit Tracks' },
+      { number: '004', name: 'Adventure of Link' },
+      { number: '004', name: 'Hyrule Warriors' },
+      { number: '005', name: 'Majoras Mask' }
+    ];
     const toggleButton = 'fa solid fa-bars drawer-toggle';
     let drawerOverlay = 'app-drawer-overlay hidden';
     let appDrawer = 'app-drawer hidden';
 
-    if (this.openDrawer) {
+    if (this.state.openDrawer) {
       drawerOverlay = 'app-drawer-overlay';
       appDrawer = 'app-drawer';
     }
 
     return (
     <div>
-        <div onClick={this.handleClick} className = {toggleButton}>
-
+        <div>
+          <i onClick={this.handleClick} className={toggleButton}></i>
       </div>
-      <div className={drawerOverlay}>
+        <div onClick={this.handleClick} className={drawerOverlay}>
       </div>
       <div className={appDrawer}>
-        <div></div>
+        <div className='game-list-header-wrapper'>
+            <h2 className='game-list-header'>Choose a Game</h2>
+        </div>
+        <GameList games={games}/>
       </div>
     </div>
     );
