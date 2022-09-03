@@ -1,0 +1,15 @@
+.topic-list {
+  list-style-type: none;
+}
+
+.topic-header {
+  font-weight: bold;
+}
+
+.topic-description {
+  width: 400px;
+}
+
+.hidden {
+  display: none;
+}
