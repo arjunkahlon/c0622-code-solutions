@@ -1,0 +1,24 @@
+.topic-list {
+  list-style-type: none;
+}
+
+.topic-header {
+  width: 350px;
+  font-weight: 500;
+  border: 1px solid black;
+  background-color: rgb(221 221 221);
+  margin: 0;
+  padding: 0.5rem 0;
+  padding-left: 0.5rem;
+}
+
+.topic-description {
+  width: 342px;
+  border: 1px solid black;
+  margin: 0;
+  padding: 0.5rem;
+}
+
+.hidden {
+  display: none;
+}
