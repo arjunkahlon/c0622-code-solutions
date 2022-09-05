@@ -62,9 +62,9 @@ class Carousel extends React.Component {
     });
     const imageCircles = images.map(image => {
       if (parseInt(image.number - 1) === this.state.currentIndex) {
-        return <i onClick={event => this.handleClick(event, image.number)} key={image.number} className='fas fa-circle'></i>;
+        return <i onClick={event => this.handleClick(event, image.number)} key={image.number} className='fas fa-circle carousel-circle'></i>;
       } else {
-        return <i onClick={event => this.handleClick(event, image.number)} key={image.number} className='far fa-circle'></i>;
+        return <i onClick={event => this.handleClick(event, image.number)} key={image.number} className='far fa-circle carousel-circle'></i>;
       }
     });
 

@@ -38,6 +38,10 @@
   text-align: center;
 }
 
+.carousel-circle {
+  margin: 0  0.5rem;
+}
+
 .arrow-wrapper > i {
   font-size: 40px;
   padding-top: 6em;
