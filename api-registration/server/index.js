@@ -53,30 +53,6 @@ app.post('/api/auth/sign-up', (req, res, next) => {
 
 });
 
-app.delete('/api/auth/:userId', (req, res, next) => {
-  const userId = Number(req.params.userId);
-  if (!Number.isInteger(userId) || userId < 1) {
-    throw new ClientError(400, 'userId must be a positive integer');
-  }
-  const sql = `
-    delete from "users"
-     where "userId" = $1
-    returning *
-  `;
-  const params = [userId];
-  db.query(sql, params)
-    .then(result => {
-      const [deletedUser] = result.rows;
-      if (!deletedUser) {
-        throw new ClientError(404, `cannot find grade with gradeId ${userId
-}`);
-      } else {
-        res.sendStatus(204);
-      }
-    })
-    .catch(err => next(err));
-});
-
 app.use(errorMiddleware);
 
 app.listen(process.env.PORT, () => {
