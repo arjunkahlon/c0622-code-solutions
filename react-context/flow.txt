@@ -1,0 +1,191 @@
+Environment Setup
+The application is developed, tested, and ran in the Node.js environment. We
+  begin by installing our necessary packages for both development and production.
+
+Production
+argon2:  Cryptographic password hashing algorithm for safe storage in our
+  database
+dotenv: Environment variable loader
+express: Backend web framework for Node.js
+jsonwebtoken: Authenticate users
+jwt.decode: Decode JWT Tokens
+pg: PostgreSQL client for Node.js
+React: Front-end framework/library for building User Interface Components
+React-DOM: access and modify the DOM
+React-Refresh/react-refresh-webpack-plugin: Integrated fast refresh into webpack
+  bundler, allowing developers to edit React components without losing state.
+
+
+Development
+@babel/core: Babel compiler core
+@babel/plugin-transform-react-jsx: Plugin that transforms JSX to JavaScript that
+  the browser can use
+@babel/preset-env: Babel preset that compiles ES2015+ down to ES5 by automatically
+  determining the Babel plugins and polyfills needed based on the targeted browser
+  or runtime environment.
+connect-livereload: Connect middleware for adding the livereload script to the response.
+nodemon: Utility that monitors source code changes and automatically restarts your server.
+webpack: Static module bundler for JavaScript applications.
+webpack-cli: Provides a flexible set of commands for increasing development
+  speed when setting up a custom webpack project.
+webpack-dev-middleware: An express-style development middleware for use with
+  webpack bundles and allows for the serving of the files emitted from webpack.
+webpack-hot-middleware: Webpack hot reloading using only webpack-dev-middleware.
+
+After installing our packages, we create an .env file to be used by the application
+
+
+Database Setup
+This application is built using a PostgreSQL relational database.  We must first
+  setup the database.
+
+1.	We begin by starting the postgresql server utilizing the “sudo service
+  postgresql start” command
+2.	We then create a new relational database named reactContext utilizing the
+  “createdb reactContext” command.
+3.	Next, we reference our schema.sql file for the logical configuration of our
+  database. A schema design allows us to organize the data into separate entities
+  and can be reused with other databases. In our schema.sql, we have the
+  PostgreSQL command: `create schema “public”` which defines and enters a new
+  schema named “public” into the current database. This schema name must be
+  unique from any existing schema names in the current database. Next we create
+  a table named users in the specified schema (“public”). In the arguments, we
+  create the column names: userId, username, hashedPassword, and createdAt. The
+  createdAt is generated with a timestamp and the userId is Auto-Incremented
+  using Serial. The primary key of the schema is userId. We also utilize a unique
+  constraint to ensure that each username is unique.
+4.	Next, let’s reference data.sql. This file contains the SQL command for
+  inserting into the username and hasedPassword columns of the users table. The
+  file inserts the username “anonymous” accompanies by a hashed password.
+5.	We then run the import shell script to initialize our current database
+  utilizing the schema provided in schema.sql and the initial data provided in
+  data.sql with the DATABASE_URL provided in our .env file.
+6.	Finally, we run the command “pgweb –db=reactContext” to start our web-based
+  pgweb database browser for the database: reactContext.
+
+Server Setup
+To start the server, we run index.js. This file is only ran once, and any
+  necessary callbacks are added to the Callback Queue.
+
+  Let’s examine the modules we import into our index.js file.
+1.	We import the path module for working with directories/file systems
+2.	We import the PostgreSQL client (pg) to connect to our database
+3.	We import argon2 for hashing and verifying user inputted passwords
+4.	We import express as we will be creating an express application
+5.	We import jwt to digitally sign tokens sent in the resposne
+6.	We import the ClientError module which handles constructing the error
+  message object with the status and error message.
+7.	We import the error-middleware module which handles the type of error being
+  encountered. If it’s a case of ClientError, we send the client a res with the
+  error status and error message. If the error is a JsonWebTokenError (imported
+  from ‘jsonwebtoken’) we send the client a response with a 401 error and
+  ‘invalid access token’ error. Otherwise, the error is a server side error,
+  thus we send the client a 500 error code with the message ‘an unexpected
+  error has occurred.’
+
+We then create a new PostgreSQL Connection pool and assign it to the const
+  variable db. The constructor for this object has two properties:
+1.	connectionString: Database URL provided by the .env file
+2.	SSL property with it’s rejectUnauthorized property set to false
+
+We then instantiate an Express application by calling express() and assigning
+  the return to the const variable app.
+
+We then add the middlewares for serving static files and JSON request parsing,
+  express.static() and express.json() respectively.
+
+The server handles two post requests routes:
+
+  /api/auth/sign-up’
+
+  1.	User sends post request to application at url: ‘/api/auth/sign-up’
+  2.	The username and password properties are destructured from the request
+        body and their values are stored in the const variables, username and
+        password, respectively.
+  3.	If either the username or password are missing from the request body, the
+        server throws a 400 error to the client alerting them that both fields
+        are required.
+  4.	If both the username and password are included, the application uses the
+        hash method of the argon2 object to create a hashed password. After the
+        hashed password is created, the application creates a sql command to
+        insert into the username and hashedpassword into the users table.
+  5.	If this user insertion is successful, the server sends a 201 status with
+        a JSON object of the user data.
+  6.	If any of the promises fail, the error is send to the error middleware.
+
+  '/api/auth/sign-in'
+
+  1.	User sends a post request to the url: /api/auth/sign-in’
+  2.	The username and password properties are destructured from the request
+        body and their values are stored in the const variables, username and
+        password
+  3.	If either the username or password are missing from the request body, the
+        server throws a 401 error to the client alerting them that the login
+        is invalid.
+  4.	If both the username and password are included in the request body, the
+        server creates a SQL command to retrieve the userID and hashedPassword
+        from the users table of the database where the unique username in the
+        database matches the username of the request body.
+  5.	The database is queries and the first element of the rows property of the
+        result object is stored in the const variable users. If no user is
+        returned from the query, the server throws a 401 error, alerting the
+        client that the login is invalid.
+  6.	If a user is successfully retrieved from the database, the server
+        destructures the userId and hashedPassword properties of this user
+        object and stores their values in the const variables userId and
+        hashedPassword, respectively.
+  7.	The server then uses the verify method of the argon2 object to compare
+        the retrieved hashPassword with the password obtained from the request
+        body. If a match is not found, the application throws a 401 error that
+        the login is invalid.
+  8.	If a match is found, the server creates a new object named payload with
+        two properties: userId and username.
+  9.	The server then utilizes the sign method of the jwt object to create a
+        digital token signed by our server. In the arguments for the sign method
+        are our the payload object and  a secret key stored “secretly” on our
+        server .env file.
+  10.	The server then sends a response back to the client in the form of a JSON
+        object with the token and payload.
+  11.	Any errors are sent to the error middleware described above.
+
+Applicaiton Flow
+
+  1. The user requests http:localhost:3000. The browser sends an HTTP Get
+      Request to our server at Host: localhost:3000. The static middleware
+      automatically looks for index.html and sends it the client.
+  2. The browser parses the HTML file and sends additional requests for
+        linked stylesheets and referenced js files. In this application, the
+        browser makes requests for the linked Bootstrap and Font Awesome
+        stylesheets. The browser also requests main.js which is linked in the
+        script tag.
+  3. Main.js contains all of our bundled JavaScript modules through webpack. The
+        entry point of these modules is index.jsx.
+  4. Index.jsx queries the DOM of our index.html for the div element with id
+        attribute "root". It then passes in this div element as an argument
+        for the ReactDOM.createRoot() method which creates a container and returns
+        it the const variable root. These container will be used for rendering
+        React elements.
+  5. The render method of the root object is then called with the argument: the
+        React element App with no props passed in.
+  6. The App component call its constructor method, which first calls the
+      super function (the constructor for the React.Component). We call super()
+      first as our component extends from React.Component. Next, we initialize
+      state by setting our properties to their initial values. The property: user
+      is set to null. The property: isAuthorizing is set to false. The route
+      property is initialzed by calling parseRoute with the hash property of the
+      location property of the window object passed in as an argument. We complete
+      our constructor by binding our methods to this.
+  7. The App component renders it's initial state. Then, the componentDidMount
+      method is called. The componet creates an event listener on the window
+      object that listens for a change in the fragment identifier in the URL. If,
+      this fragment does change, the component calls setState and updates route
+      by calling parseRoute on window.location.hash.
+  8.
+
+Now that I've described the backend flow and environment, as well as the
+  initial application flow when the application is loaded, we can now discuss
+  the application flow of the 4 user features:
+1. User can sign up
+2. User can sign in
+3. User can stay signed in (even when they refresh the page)
+4. User can sign out
