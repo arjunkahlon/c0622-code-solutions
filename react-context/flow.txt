@@ -225,7 +225,7 @@ Now that I've described the backend flow and environment, as well as the
 User can sign up
 
 * When the user boots up the web application, they are greeted with a sign in
-    page. On the navbar, there is a button to take up to the Sign Up Page.
+    page. On the navbar, there is a button to take us to the Sign Up Page.
     Let's discuss how we got there.
 
 1. As I explained earlier, the app attempts to get the jwt from the user's
@@ -233,7 +233,7 @@ User can sign up
     of the App component is null. Since the initial route is null, the renderPage
     method of the App component returns the Home Page.
 
-2. The Home Page now renders its initial state. It check the context provided
+2. The Home Page now renders its initial state. It checks the context provided
     from App and determines that the user is null. Thus it is returns the
     Redirect component with a to prop which has a value of "sign-in".
 
@@ -255,7 +255,7 @@ User can sign up
       (path === 'sign-in') evaluates to true, and thus, the App component renders
       the Auth page.
 
-5. Now we render the Auth page. The Auth page restructures the context object
+5. Now we render the Auth page. The Auth page destructures the context object
       provided through AppContext into const variables user, route, and handleSignIn.
       If a user exists, the auth page calls the Redirect function and passes
       in an empty string as a prop. This causes the App to render the Home page.
@@ -285,5 +285,157 @@ User can sign up
       the "#sign-up" route and it's affiliated welcome message. What the user is
       presented with is a Sign Up form with inputs for the username and password. How
       is this form constructued and presented to the user? It is through the AuthForm
-      Component which is returned within the render method of the Auth page.
-9.
+      Component which is returned within the render method of the Auth page. The props
+      passed into this Auth Form are key prop which has a value of the path property
+      of the route object, the action prop which also has a value of the path property
+      of the route object, and the handleSignIn method of the App Component. All three
+      of these props are provided through the context.
+
+9. The Auth Form component constructs and sets it's properties, username and password,
+      to an empty string. The component has two methods. The first is a handleChange
+      method which handles an onChange event for user entry into the form fields.
+      The second is a handleSubmit method which handles the form submission. Both
+      methods are binded to the this object in the component constructor.
+
+10. The component render method destructures the props property and stores the action
+      property in the const variable: action. The component also destructures the
+      handleChange and handleSubmit methods into the const variables handleChange and
+      handleSubmit. The component then sets the alternate of the action variable into
+      the const variable alternatActionText. It also uses the action to set the text
+      content inside the Submit button (Register for Sign Up and Log In for Sign In).
+
+11. As the user enters in their username and password, the authform component handles
+      onChange event and calls setState to update the properties, password and
+      username. When the user clicks the Register Button, the component handles the
+      onSubmit event on the form and calls the handleSubmit method.
+
+12. The handleSubmit method calls the preventDefault method of the event object to
+      prevent the default refresh. The component then stores the const variable
+      action "sign-up" from this.props. This variable will be used when handling our fetch request.
+      The component then create a req object, giving the method property a value of
+      'POST' and setting the appropriate headers. The compoenent this stringifies
+      the username and password and stores this JSON data as the value of the body
+      property of the req object.
+
+13. The component then creates a fetch request to 'api/auth/(our const variable action)'
+      with out req object as the second argument. In our sign up case, we are sending a
+      post request to 'api/auth/sign-up' and attaching username: "hankhill" password: "propane1"
+      from the body of the req object. Once our promise resolves, we call the json method of the
+      response object to convert our response to JSON. We then create a new promise on the result
+      of the res.json() method, in which we update window.location.hash to 'sign-in'.
+
+      Now, let's refer back to our server. The steps our server takes are explained in detail above
+      on line 99. Our server, processes this request, hashes the provided password, and stores
+      this user into our users table. Thus our user has signed up.
+
+11. The hash change to "sign-in" triggers the hashchange event callback on the App component. Thus,
+      our app calls renderPage and renders the auth component but with the route 'sign-in'.
+
+12. This completes our Feature 1. For the remaining features, I will be referencing back to
+      the previous explanations in order to create a succinct explanation.
+
+
+
+User can sign in
+
+1. Having signed up, we are now transferred to the "sign-in" route in which we initially
+    began on Feature 1. Please refer to steps 1-5 on Feature 1 in order to understand how
+    we arrived at this page.
+
+2. In this feature we are signing in. The database  has our account "hankhill"
+    and it's hashedpassword stored. We can go ahead and enter in our log in
+    credentials "hankhill" in the username field and "propane1" in the password
+    field. The onChange event causes the AppForm component to setState on its
+    properties with each character entered. This change can be seen in React
+    Component developer tools. Once our credentials are entered. We click the
+    Log-In button.
+
+3. Clicking the Log In button triggers the onSubmit event which has a value of a
+      JavaScript expression with the const varibale handleSubmit. Remember that this
+      variable has a value of this.handleSubmit. Thus, we call the handleSubmit method
+      of the AppForm component.
+
+4. In the handleSubmit, we store the value "sign-in" in our action variable. We then
+    create our req object with the 'POST' value for method and the appropriate headers.
+    We stringify the username and password and set this string as the  value of the body
+    property. We then make our fetch request to the server. This request is
+    '/api/auth/sign-in username: "hankhill" password: "propane1'. For the detailed steps
+    of our 'api/auth/sign-in' route, please refer to line 116. Our server received are
+    request and creates a SQL command to grab a match for the provided username from Our
+    database. If this user does not exist, our server throws an 'Invalid Login' error.
+    If a user does exist, the server then verifies the provided password with the stored
+    hashedPassword. If a match is found, the server sends a token back to the user in the
+    response.
+
+5. Our authform then performs the JSON method on the response from the server. After, it
+    checks this result to ensure that a user and token exist. If they do exist. The authform
+    calls the onSignIn method that was passed as a prop with the result as an argument. Now,
+    let's refer back to AuthForm's parent, Auth. the onSignIn prop that was passed to AuthForm
+    is a JavaScript expression containing the handleSignIn variable which has a value of
+    the handleSignIn method provided by the context. Now let's refer back to the App component.
+
+6. The handleSignIn method of the App component is called and a user and token are destructured
+    from the result. The component then sets the token in the user's local storage with the name
+    'react-context-jwt'. The component this setsState with the updated user.
+
+7. The App component renders again. Now the route is still 'sign-in'. However, we return
+    the Auth component in our render method. In the Auth component, the component verifies
+    that the user exists and returns the Redirect component with a empty string as the prop.
+    In the Redirect component, the component evalues the props.to to an empty string and thus
+    updates the hash property of the url object to a '#'. This triggers the hashchange event
+    and causes the App component to render once again but with the route '#'.
+
+8. This brings us to the end of the feature. We are signed in and the current hash is '#'.
+    Our App component thus calls it renderPage method and returns the Home component.  The
+    Home comopnent verifies that the user exists, and thus returns the gifContainer.
+
+    We are greeted with a variety of Rick Roll gifs. On the navbar, we have a Sign Out button.
+    Refer to line 270 for why the nav bar button is 'Sign Out'. The NavBar component
+    checks if the user exists. If the user exists, the navbar renders a Sign
+    Out button. If the user does not exist (is null), the component renders two
+    buttons: Sign In and Sign Up. In our case, we have signed in, the app has confirmed
+    that we exist, and has rendered the Sign Out Button.
+
+
+User Can Stay Signed In
+
+When we leave the page and return or refresh the page, we are still signed in
+  and do not have to go through the process of signing in. Why is that?
+
+1. Recall from Step 8 of the Initial Application Flow (line 185).
+
+The App component gets the jwt from the user's local storage and
+  assigns it to the const variable token. It then checks to see if the
+  token exists. If it does, it decodes the token and sets the return of the
+  decode method to the const variable user. If the token does not exist,
+  it sets the value of null to the const variable user.
+
+  In our case, the token does exist in our local storage with the name 'react-context-jwt.
+  Thus, the App component decodes our JWT and stores the user property. This user
+  property is provided to all of the App component's children components through context.
+
+2. With out user stored, the App calls its renderPage method. The page that is rendered
+    is determined by the path property of the App component. Recall that this property is
+    obtained from window.location.hash. Thus the browser provides our component with the
+    route (in the case of browser refresh or clicking the back button). This
+    view handling is why our Auth component has a condition that checks if the User
+    exists and returns the Redirect component with an empty "" string if the user
+    does exist. We would not want the user to revisit any form of Authentication if
+    they are already logged in. Rather the App component calls renderPage which returns
+    the Home component which verifies that the user exists and thus returns the gif container.
+
+User Can Sign Out
+
+As I mentioned above, the user is presented with a Sign Out button on the NavBar component.
+
+1. When the user clicks this Sign Out button,, the onClick event fires which has a value
+    of the JavaScript expression with the const variable handleSignOut. The const variable
+    handleSignOut has a value of the handleSignOut method provided by context. This takes us
+    back to the App Component.
+
+2. The handleSignOut method of the App component is called and the App component removes
+      the 'react-context-jwt' token from the user's local storage. The App component then
+      calls setState and sets the user property to null. This causes the  component to render
+      once again to an initial state where we land on the Sign-In page. This is due to the
+      user being nul with no token in local storage. For a detailed explanation, please refer
+      back to line 227.
