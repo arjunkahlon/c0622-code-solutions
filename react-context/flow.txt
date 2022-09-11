@@ -175,12 +175,42 @@ Applicaiton Flow
       property is initialzed by calling parseRoute with the hash property of the
       location property of the window object passed in as an argument. We complete
       our constructor by binding our methods to this.
-  7. The App component renders it's initial state. Then, the componentDidMount
+  7. The App component renders it's initial state. Since isAuthorizing is true,
+      the render method immediately returns null and exits. Then, the componentDidMount
       method is called. The componet creates an event listener on the window
-      object that listens for a change in the fragment identifier in the URL. If,
+      object that adds a callback for a change in the fragment identifier in the URL. If,
       this fragment does change, the component calls setState and updates route
-      by calling parseRoute on window.location.hash.
-  8.
+      by calling parseRoute on window.location.hash. This is how we will be
+      swapping between pages in our application.
+  8. The App component then gets the jwt from the user's local storage and
+      assigns it to the const variable token. It then checks to see if the
+      token exists. If it does, it decodes the token and sets the return of the
+      decode method to the const variable user. If the token does not exist,
+      it sets the value of null to the const variable user.
+  9. The App component then calls setState and updates the App component property
+      user to the value we just obtained and updates isAuthorizing to false. The
+      App component now renders again. Since, isAuthorizing is now false, we do
+      not exit immediately as we did in our initial state.
+  10. We destructure the state property of the this object and store the const
+        varibales user and route. We also destructure the handleSignIn and
+        handleSignOut methods of this this object into the const variables
+        handleSignIn and handleSignOut. The four destructured const variables
+        are placed into an object literal and assigned to the const variable
+        contextValue.
+  11. We pass our contextValue object as a value prop to the Provider component.
+        This object will be passed onto to consuming components that are descendents of this
+        provider.
+  12. Inside the Provider React element, we have an fragment that will be used to
+        seperate the navbar component with the view swappable page componenets.
+        Inside the return expression for the PageContainer component, we have a
+        JavaScript expression in which we call the renderPage method of the
+        this object.
+  13. Inside the renderPage method, we destructure the current state's route
+        into the const variable path. We now have a condtional expression to
+        determine which page to render. If the route is empty, we return the
+        Home page. If the path is sign-in or sign-out, we render the
+        Auth page. Otherwise, we render the Not Found page.
+
 
 Now that I've described the backend flow and environment, as well as the
   initial application flow when the application is loaded, we can now discuss
@@ -189,3 +219,71 @@ Now that I've described the backend flow and environment, as well as the
 2. User can sign in
 3. User can stay signed in (even when they refresh the page)
 4. User can sign out
+
+
+
+User can sign up
+
+* When the user boots up the web application, they are greeted with a sign in
+    page. On the navbar, there is a button to take up to the Sign Up Page.
+    Let's discuss how we got there.
+
+1. As I explained earlier, the app attempts to get the jwt from the user's
+    local storage. Currently, this token does not exist, so the user property
+    of the App component is null. Since the initial route is null, the renderPage
+    method of the App component returns the Home Page.
+
+2. The Home Page now renders its initial state. It check the context provided
+    from App and determines that the user is null. Thus it is returns the
+    Redirect component with a to prop which has a value of "sign-in".
+
+3. The Redirect function is called. It creates a new URL object with the location
+      property of the window object passed in as an argument. The function then
+      checks the to property of the passed in props object. If to has a
+      value of an empty string, the function sets the hash property to a single
+      '#'. If to has any other value, the value becomes the fragment identifier.
+      The function finally calls the replace method of the location property of
+      the window object. This replaces the previous fragment identfier with the
+      newly created on. In our case, the passed in "sign-in" prop becomes the
+      new fragment identifier.
+
+4. Now let's recall that the App component created an event listener on the
+      window object that listens for a hashchange event. The redirect function
+      changed the hash to "sign-in". This triggers the App component's setState
+      method which updates it's route property to our new hash ("sign-in"). Now
+      we enter the render() method. In our renderPage() method, the conditional
+      (path === 'sign-in') evaluates to true, and thus, the App component renders
+      the Auth page.
+
+5. Now we render the Auth page. The Auth page restructures the context object
+      provided through AppContext into const variables user, route, and handleSignIn.
+      If a user exists, the auth page calls the Redirect function and passes
+      in an empty string as a prop. This causes the App to render the Home page.
+      However, if the user is null, the Auth component then checks the current route.
+
+6. If the route is ‘sign-in’, the component prompts the user to sign in. Otherwise,
+      the component prompts the user to create an account. For this feature, we
+      are signing up. Thus we click the Sign Up button on the navbar. This takes us
+      to the navbar component.
+
+7. In the navbar component, we are provided with the context object which is
+      destructured into the user and handleSignOut variables. The component
+      checks if the user exists. If the user exists, the navbar renders a Sign
+      Out button. If the user does not exist (is null), the component renders two
+      buttons: Sign In and Sign Up. In our previous step, we clicked the Sign
+      Up button on this navbar. This button is a React Element of type anchor with
+      an href property with the value '#sign-up'. So when the user clicks this
+      button, the hash changes to '#sign-up'. This triggers the hashchange event
+      listener which causes the App to setState. The App component's route
+      property is updated to reflect our new hash '#sign-up'. The App component
+      renders and renderPage returns the Home component. The Home component is
+      rendered but now with the hash "#sign-up". The Home component checks the
+      route, and creates it's welcome message: "Create an account to get
+      started!".
+
+8. Having clicked the sign up button, the home component has now rendered with
+      the "#sign-up" route and it's affiliated welcome message. What the user is
+      presented with is a Sign Up form with inputs for the username and password. How
+      is this form constructued and presented to the user? It is through the AuthForm
+      Component which is returned within the render method of the Auth page.
+9.
