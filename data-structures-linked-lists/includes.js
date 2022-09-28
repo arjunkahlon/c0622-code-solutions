@@ -1,15 +1,14 @@
 /* exported includes */
 
 function includes(list, value) {
-  let listCopy = list;
 
   if (list.data === value) {
     return true;
   }
 
-  while (listCopy.next !== null) {
-    listCopy = listCopy.next;
-    if (listCopy.data === value) {
+  while (list.next !== null) {
+    list = list.next;
+    if (list.data === value) {
       return true;
     }
   }
